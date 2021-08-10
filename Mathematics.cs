@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mathematics : MonoBehaviour
-{
+public static class Mathematics {
     /*
           
         --- MATHEMATICS SCRIPT ---
@@ -25,25 +24,14 @@ public class Mathematics : MonoBehaviour
         You can use this in any project so far! As long as you give credits to me :)
          */
 
-
-    public static Mathematics calculate;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        calculate = this;
-    }
-
     #region Calculations
     // --- AVERAGE
-    // Gets the average between the array NUMBERS
-    public float Average(float[] NUMBERS)
-    {
+    ///<summary>Gets the average between the array NUMBERS</summary>
+    ///<param name="NUMBERS">The arrangement of numbers to be averaged</param>
+    public static float Average(float[] NUMBERS) {
         float total = 0;
         foreach (var num in NUMBERS)
-        {
             total += num;
-        }
         return (total / NUMBERS.Length);
     }
 
@@ -55,30 +43,22 @@ public class Mathematics : MonoBehaviour
     // If you need it in decimal, just divide the result between 100!
     // float perc = Mathematics.calculate.Percentaje(34, 250) / 100;
     //
-    public float Percentage(float ENTIRE, float NUMBER)
-    {
-        return (NUMBER * 100) / ENTIRE;
-    }
+    ///<summary>Calcule the porcentage</summary>
+    ///<param name="NUMBERS">The arrangement of numbers to be averaged</param>
+    public static float Percentage(float ENTIRE, float NUMBER) => (NUMBER * 100) / ENTIRE;
     #endregion
 
     #region Random numbers
     // --- PROBABILITY
     // Randomly chooses a number between 1 and the variable BETWEEN.
     // Returns true if the number got is equal or less than the variable PROB
-    public bool Probability(int PROB = 1, int BETWEEN = 2)
-    {
+    public static bool Probability(int PROB = 1, int BETWEEN = 2) {
         if (PROB > BETWEEN)
-        {
             Debug.LogError("MATH ERROR: The variable PROB is bigger than the variable BETWEEN you gave");
-        }
         if (BETWEEN <= 1)
-        {
             Debug.LogError("MATH ERROR: BETWEEN can't be less than 2");
-        }
         if (PROB < 1)
-        {
             Debug.LogError("MATH ERROR: PROB can't be less than 1");
-        }
 
         int resultado = Random.Range(1, BETWEEN);
         return resultado <= PROB;
@@ -95,8 +75,7 @@ public class Mathematics : MonoBehaviour
     // Mathematics.calculate.Range(1.5f, 0) =
     // Mathematics.calculate.Range(1.5f, -1.5f) 
     //
-    public float Range(float ONE, float TWO = 0)
-    {
+    public static float Range(float ONE, float TWO = 0) {
         float max = (TWO == 0) ? -ONE : TWO;
         return Random.Range(ONE, max);
     }
