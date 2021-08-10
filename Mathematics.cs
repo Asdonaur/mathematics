@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class Mathematics {
     /*
@@ -28,7 +28,17 @@ public static class Mathematics {
     // --- AVERAGE
     ///<summary>Gets the average between the array NUMBERS</summary>
     ///<param name="NUMBERS">The arrangement of numbers to be averaged</param>
+    ///<return>Return the average of NUMBERS</return>
     public static float Average(float[] NUMBERS) {
+        float total = 0;
+        foreach (var num in NUMBERS)
+            total += num;
+        return (total / NUMBERS.Length);
+    }
+    ///<summary>Gets the average between the array NUMBERS</summary>
+    ///<param name="NUMBERS">The list of numbers to be averaged</param>
+    ///<return>Return the average of NUMBERS</return>
+    public static float Average(List<float> NUMBERS) {
         float total = 0;
         foreach (var num in NUMBERS)
             total += num;
@@ -44,14 +54,18 @@ public static class Mathematics {
     // float perc = Mathematics.calculate.Percentaje(34, 250) / 100;
     //
     ///<summary>Calcule the porcentage</summary>
-    ///<param name="NUMBERS">The arrangement of numbers to be averaged</param>
+    ///<param name="ENTIRE"></param>
+    ///<param name="NUMBER"></param>
+    ///<return>Return the porcentage</return>
     public static float Percentage(float ENTIRE, float NUMBER) => (NUMBER * 100) / ENTIRE;
     #endregion
 
     #region Random numbers
     // --- PROBABILITY
-    // Randomly chooses a number between 1 and the variable BETWEEN.
-    // Returns true if the number got is equal or less than the variable PROB
+    ///<summary>Randomly chooses a number between 1 and the variable BETWEEN.</summary>
+    ///<param name="PROB"></param>
+    ///<param name="BETWEEN"></param>
+    ///<return>Returns true if the number got is equal or less than the variable PROB</return>
     public static bool Probability(int PROB = 1, int BETWEEN = 2) {
         if (PROB > BETWEEN)
             Debug.LogError("MATH ERROR: The variable PROB is bigger than the variable BETWEEN you gave");
@@ -75,6 +89,10 @@ public static class Mathematics {
     // Mathematics.calculate.Range(1.5f, 0) =
     // Mathematics.calculate.Range(1.5f, -1.5f) 
     //
+    ///<summary><summary>
+    ///<param name="ONE"></param>
+    ///<param name="TWO"></param>
+    ///<return>Random float between ONE and TWO</return>
     public static float Range(float ONE, float TWO = 0) {
         float max = (TWO == 0) ? -ONE : TWO;
         return Random.Range(ONE, max);
